@@ -8,6 +8,8 @@ import {
   Platform,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/AppNavigator';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { clienteRepo, productoRepo } from '../database';
 import { obtenerResumen } from '../utils/reportes';
@@ -15,8 +17,8 @@ import {
   todayISO,
   startOfWeekISO,
   startOfMonthISO,
+  formatCurrency,
 } from '../utils/format';
-import { formatCurrency } from '../utils/format';
 import GraficoIngresosEgresos from '../components/GraficoIngresosEgresos';
 import FiltroChips from '../components/FiltroChips';
 import DashboardCard from '../components/DashboardCard';
@@ -24,7 +26,9 @@ import colors from '../theme/colors';
 
 type Filtro = 'hoy' | 'semana' | 'mes' | 'rango';
 
-const HomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+
+const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const [filtro, setFiltro] = useState<Filtro>('hoy');
   const [resumen, setResumen] = useState({
     ingresos: 0,

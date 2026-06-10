@@ -9,6 +9,8 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/AppNavigator';
 import { clienteRepo, productoRepo, ventaRepo } from '../database';
 import { Cliente, Producto } from '../database/types';
 import { formatCurrency, todayISO } from '../utils/format';
@@ -19,7 +21,9 @@ interface ItemCarrito {
   cantidad: number;
 }
 
-const SaleFormScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'SaleForm'>;
+
+const SaleFormScreen: React.FC<Props> = ({ navigation }) => {
   const [clientes, setClientes] = useState<Cliente[]>([]);
   const [productos, setProductos] = useState<Producto[]>([]);
   const [clienteSel, setClienteSel] = useState<Cliente | null>(null);

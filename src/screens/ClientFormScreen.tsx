@@ -8,15 +8,16 @@ import {
   Alert,
   ScrollView,
 } from 'react-native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/AppNavigator';
 import { clienteRepo } from '../database';
 import { Cliente } from '../database/types';
 import { todayISO } from '../utils/format';
 import colors from '../theme/colors';
 
-const ClientFormScreen: React.FC<{ route: any; navigation: any }> = ({
-  route,
-  navigation,
-}) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'ClientForm'>;
+
+const ClientFormScreen: React.FC<Props> = ({ route, navigation }) => {
   const existing: Cliente | undefined = route.params?.cliente;
   const isEdit = !!existing;
 

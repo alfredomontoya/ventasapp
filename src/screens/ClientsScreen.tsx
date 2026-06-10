@@ -9,12 +9,16 @@ import {
   RefreshControl,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/AppNavigator';
 import { clienteRepo } from '../database';
 import { Cliente } from '../database/types';
 import ClientCard from '../components/ClientCard';
 import colors from '../theme/colors';
 
-const ClientsScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Clients'>;
+
+const ClientsScreen: React.FC<Props> = ({ navigation }) => {
   const [clientes, setClientes] = useState<Cliente[]>([]);
   const [query, setQuery] = useState('');
   const [refreshing, setRefreshing] = useState(false);

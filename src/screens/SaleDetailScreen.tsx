@@ -7,12 +7,16 @@ import {
   RefreshControl,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/AppNavigator';
 import { ventaRepo, productoRepo, clienteRepo } from '../database';
 import { Venta, DetalleVenta, Producto } from '../database/types';
 import { formatCurrency, formatDateTime } from '../utils/format';
 import colors from '../theme/colors';
 
-const SaleDetailScreen: React.FC<{ route: any }> = ({ route }) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'SaleDetail'>;
+
+const SaleDetailScreen: React.FC<Props> = ({ route }) => {
   const { ventaId } = route.params;
   const [venta, setVenta] = useState<(Venta & { items: DetalleVenta[] }) | null>(
     null,

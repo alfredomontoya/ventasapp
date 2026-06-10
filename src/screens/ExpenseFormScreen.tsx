@@ -10,6 +10,8 @@ import {
   Platform,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/AppNavigator';
 import { egresoRepo } from '../database';
 import { Egreso, CategoriaEgreso } from '../database/types';
 import { todayISO } from '../utils/format';
@@ -22,10 +24,9 @@ const CATEGORIAS: { key: CategoriaEgreso; label: string }[] = [
   { key: 'otros', label: 'Otros' },
 ];
 
-const ExpenseFormScreen: React.FC<{ route: any; navigation: any }> = ({
-  route,
-  navigation,
-}) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'ExpenseForm'>;
+
+const ExpenseFormScreen: React.FC<Props> = ({ route, navigation }) => {
   const existing: Egreso | undefined = route.params?.egreso;
   const isEdit = !!existing;
 

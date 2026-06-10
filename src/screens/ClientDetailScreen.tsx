@@ -9,16 +9,17 @@ import {
   RefreshControl,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/AppNavigator';
 import { clienteRepo, ventaRepo } from '../database';
 import { Cliente, Venta } from '../database/types';
 import { formatCurrency, formatDate } from '../utils/format';
 import SaleItem from '../components/SaleItem';
 import colors from '../theme/colors';
 
-const ClientDetailScreen: React.FC<{ route: any; navigation: any }> = ({
-  route,
-  navigation,
-}) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'ClientDetail'>;
+
+const ClientDetailScreen: React.FC<Props> = ({ route, navigation }) => {
   const { clienteId } = route.params;
   const [cliente, setCliente] = useState<Cliente | null>(null);
   const [ventas, setVentas] = useState<Venta[]>([]);

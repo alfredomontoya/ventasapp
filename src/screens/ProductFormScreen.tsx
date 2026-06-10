@@ -8,14 +8,15 @@ import {
   Alert,
   ScrollView,
 } from 'react-native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/AppNavigator';
 import { productoRepo } from '../database';
 import { Producto } from '../database/types';
 import colors from '../theme/colors';
 
-const ProductFormScreen: React.FC<{ route: any; navigation: any }> = ({
-  route,
-  navigation,
-}) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'ProductForm'>;
+
+const ProductFormScreen: React.FC<Props> = ({ route, navigation }) => {
   const existing: Producto | undefined = route.params?.producto;
   const isEdit = !!existing;
 

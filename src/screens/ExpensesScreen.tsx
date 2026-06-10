@@ -8,6 +8,8 @@ import {
   RefreshControl,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/AppNavigator';
 import { egresoRepo } from '../database';
 import { Egreso, CategoriaEgreso } from '../database/types';
 import ExpenseCard from '../components/ExpenseCard';
@@ -21,7 +23,9 @@ const CATEGORIAS: { key: CategoriaEgreso | 'todas'; label: string }[] = [
   { key: 'otros', label: 'Otros' },
 ];
 
-const ExpensesScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Expenses'>;
+
+const ExpensesScreen: React.FC<Props> = ({ navigation }) => {
   const [egresos, setEgresos] = useState<Egreso[]>([]);
   const [filtroCategoria, setFiltroCategoria] = useState<
     CategoriaEgreso | 'todas'

@@ -9,12 +9,16 @@ import {
   RefreshControl,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/AppNavigator';
 import { productoRepo } from '../database';
 import { Producto } from '../database/types';
 import ProductCard from '../components/ProductCard';
 import colors from '../theme/colors';
 
-const ProductsScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Products'>;
+
+const ProductsScreen: React.FC<Props> = ({ navigation }) => {
   const [productos, setProductos] = useState<Producto[]>([]);
   const [query, setQuery] = useState('');
   const [refreshing, setRefreshing] = useState(false);

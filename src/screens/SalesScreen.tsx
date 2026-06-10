@@ -9,12 +9,16 @@ import {
   TextInput,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/AppNavigator';
 import { ventaRepo, clienteRepo } from '../database';
 import { Venta } from '../database/types';
 import SaleItem from '../components/SaleItem';
 import colors from '../theme/colors';
 
-const SalesScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Sales'>;
+
+const SalesScreen: React.FC<Props> = ({ navigation }) => {
   const [ventas, setVentas] = useState<Venta[]>([]);
   const [nombreCliente, setNombreCliente] = useState<Record<number, string>>(
     {},
